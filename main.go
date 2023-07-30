@@ -14,7 +14,7 @@ import (
 )
 
 func Init(arg string) {
-	dsn := "root:123456789mk@tcp(192.168.3.190:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:123456789mk@tcp(37.123.198.247:3306)/test?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn))
 	if err != nil {
 		println(err)
@@ -38,7 +38,7 @@ func main() {
 	router.InitRouter(r)
 	var db = model.DB
 	db.AutoMigrate(&vo.VideoList{}, &vo.Favorite{}, &vo.IsFollower{}, &vo.Comment{}, &vo.Message{})
-	r.Run()
+	r.Run(":8080")
 	fmt.Println(getClientIp())
 }
 func getClientIp() (string, error) {
